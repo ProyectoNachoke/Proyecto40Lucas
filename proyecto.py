@@ -32,7 +32,7 @@ def validar_rut(rut):
     
 def crear_Ficha(fichas,rut):
     ficha_temp = [[],[],[],"",[],[],[],[]]
-    # nº ficha de ingreso
+    # nº ficha de ingreso a
     ficha_temp[0].append(str(input("Ingrese fecha de atención: ")))
     ficha_temp[0].append(str(input("Ingrese hora de atención: ")))
     ficha_temp[0].append(str(input("Ingrese nombre del personal: ")))
