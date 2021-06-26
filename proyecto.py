@@ -1,4 +1,4 @@
-#Funciones
+#Funciones >>>>>>>>>>>>>>
 def validar_numero(n):
     num = "1234567890"
     for i in range(len(n)):
