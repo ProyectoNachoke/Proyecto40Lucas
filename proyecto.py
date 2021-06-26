@@ -1,4 +1,146 @@
 #Funciones AAAAAAAAAAAAA
+def validar_sangre(grupo):
+    grupo = grupo.upper()
+    grupos = ["A+","A-","B+","B-","AB+","AB-","O+","O-"]
+    if grupo not in grupos:
+        return False
+    return True
+    
+def crear_FichaDemo(fichas,rut):
+    ficha_temp = [[],[],[],"",[],[],[],[]]
+    # nº ficha de ingreso
+    ficha_temp[0].append(str("Fecha de atencion"))
+    ficha_temp[0].append(str("Hora de atencion"))
+    ficha_temp[0].append(str("Personal"))
+    # identificacion del paciente
+    ficha_temp[1].append(str("Nombre"))
+    ficha_temp[1].append(str("Apellido"))
+    x = str("11.111.111-K") #validar si es un rut /// LISTO
+    while not validar_rut(x):
+        x = str(input("Error, rut fuera de rango, ingrese nuevamente: "))
+    ficha_temp[1].append(x)
+    x =(str("M")) #validar si es femenino o masculino /// LISTO
+    while x.upper() != "F" and x.upper() != "M":
+        x = str(input("Error, vuelva a ingresar el genero del paciente(F/M): "))
+    if x == "F":
+        x = "Femenino"
+    else:
+        x = "Masculino"
+    ficha_temp[1].append(x)
+    ficha_temp[1].append(str("Soltero"))
+    x = str("20")#validar rango o que no sea negativo
+    flag = True
+    while flag:
+        while not validar_numero(x):
+            x = str(input("Error, edad fuera de rango, ingrese nuevamente: "))
+        x = int(x)
+        if x < 0:
+            x = "XD"
+        else:
+            flag = False
+            ficha_temp[1].append(x)
+    
+    #ficha_temp[1].append(int(input("Ingrese edad del paciente: "))) 
+    #while ficha_temp[1][5] < 0:
+    #    ficha_temp[1][5] = int(input(print("Error, edad fuera de rango, ingrese nuevamente: ")))
+    
+    ficha_temp[1].append(str("Domicilio paciente"))
+    ficha_temp[1].append(str("Grupo sanguineo"))
+    ficha_temp[1].append(str("Ingrese fono del paciente: "))
+    x = str("Si")
+    while x.upper() != "SI" and x.upper() != "NO":
+        x = str(input("Error, respuesta solo puede ser (si/no): "))
+    if x.upper() == "SI":
+        ficha_temp[1].append("SI")
+        # identificacion del acompañante
+        ficha_temp[2].append(str("Nombre Acompanante"))
+        ficha_temp[2].append(str("Apellido Acompanante"))
+        x = str("2.222.222-K") #validar si es un rut /// LISTO
+        while not validar_rut(x):
+            x = str(input("Error, rut fuera de rango, ingrese nuevamente: "))
+        ficha_temp[2].append(x)
+        ficha_temp[2].append(str("Hermano"))
+        ficha_temp[2].append(str("1"))
+    else:
+        ficha_temp[1].append("NO")
+        ficha_temp[2].append(False)
+    # Motivo de la consulta
+    ficha_temp[3] = str("Motivo")
+    # Información de atención
+    ficha_temp[4].append(str("Nombre medico"))
+    ficha_temp[4].append(str("Especialidad medico"))
+    ficha_temp[4].append(str("Sintomas"))
+    ficha_temp[4].append(str("Diagnostico"))
+    x = str("SI")
+    while x.upper() != "SI" and x.upper() != "NO":
+        x = str(input("Error, respuesta solo puede ser (si/no): "))
+    if x.upper() == "SI":
+        ficha_temp[4].append("SI")
+        x = str("5")#validar valor negativo // faltaba validar que fuera un numero:
+        flag = True
+        while flag:
+            while not validar_numero(x):
+                x = str(input("Error, días fuera de rango, ingrese nuevamente: "))
+            x = int(x)
+            if x < 0:
+                x = "XD"
+            else:
+                flag = False
+                ficha_temp[4].append(int(x))
+    else :
+        ficha_temp[4].append("NO")
+    x = str("SI")
+    if x.upper() == "SI":
+        #informacion medicamento FALTA EL APPEND DEL "SI" ///// YA LO PUSE
+        ficha_temp[5].append("SI")
+        ficha_temp[5].append(str("Nombre medicamento"))
+        ficha_temp[5].append(str("Dosis medicamento"))#validar valor negativo /// FALTA
+        ficha_temp[5].append(int("5"))#validar valor negativo /// falta validar cuando no es un numero
+        while ficha_temp[5][3] < 0:
+            ##### NO SE PONE input(print()), ES SOLO INPUT
+            ficha_temp[5][3] = int(input("Error, días fuera de rango, ingrese nuevamente: "))
+    else:
+        ficha_temp[5].append(False)
+    #datos extra del medico
+    x = str("3.333.333-K") #validar si es un rut /// LISTO
+    while not validar_rut(x):
+        x = str(input("Error, rut fuera de rango, ingrese nuevamente: "))
+    ficha_temp[6].append(x)
+    ficha_temp[6].append(str("Horario de atencion"))
+    ficha_temp[6].append(str("Titulo del medico"))
+    ficha_temp[6].append(str("Institucion"))
+    #ficha_temp[6].append(int(input("Ingrese año donde consiguió el título el médico: ")))#validar valor negativo
+    x = str("1")#validar valor negativo // faltaba validar que fuera un numero:
+    flag = True
+    while flag:
+        while not validar_numero(x):
+            x = str(input("Error, año fuera de rango, ingrese nuevamente: "))
+        x = int(x)
+        if x < 0:
+            x = "XD"
+        else:
+            flag = False
+            ficha_temp[6].append(int(x))
+
+    """
+    while ficha_temp[6][4] < 0:
+        ##### NO SE PONE input(print()), ES SOLO INPUT
+        #ficha_temp[6][4] = int(input(print("Error, el año esta fuera de rango, ingrese nuevamente: ")))
+        ficha_temp[6][4] = int(input("Error, el año esta fuera de rango, ingrese nuevamente: "))
+    """
+    
+    ficha_temp[6].append(str("Fono medico"))
+    ficha_temp[6].append(str("Direccion medico"))
+    #dato extra administrativos
+    ficha_temp[7].append(str("Nombre admin"))
+    ficha_temp[7].append(str("Fono admin"))
+    ficha_temp[7].append(str("Direccion admin"))
+    y = ficha_temp[1][2]
+    fichas[y] = ficha_temp
+#######################################################################################################################
+
+
+    
 def validar_numero(n):
     num = "1234567890"
     for i in range(len(n)):
@@ -63,13 +205,11 @@ def crear_Ficha(fichas,rut):
         else:
             flag = False
             ficha_temp[1].append(x)
-    
-    #ficha_temp[1].append(int(input("Ingrese edad del paciente: "))) 
-    #while ficha_temp[1][5] < 0:
-    #    ficha_temp[1][5] = int(input(print("Error, edad fuera de rango, ingrese nuevamente: ")))
-    
     ficha_temp[1].append(str(input("Ingrese domicilio del paciente: ")))
-    ficha_temp[1].append(str(input("Ingrese grupo_sanguineo del paciente: ")))
+    x = str(input("Ingrese grupo sanguineo del paciente: "))
+    while not validar_sangre(x):
+        x = input("Error, grupo sanguineo fuera de rango, ingrese nuevamente: ")
+    ficha_temp[1].append(x)
     ficha_temp[1].append(str(input("Ingrese fono del paciente: ")))
     x = str(input("¿Asiste acompañado? (si/no): "))
     while x.upper() != "SI" and x.upper() != "NO":
@@ -119,10 +259,17 @@ def crear_Ficha(fichas,rut):
         ficha_temp[5].append("SI")
         ficha_temp[5].append(str(input("Ingrese nombre del medicamento: ")))
         ficha_temp[5].append(str(input("Ingrese dosis del medicamento: ")))#validar valor negativo /// FALTA
-        ficha_temp[5].append(int(input("Ingrese cantidad de días con el medicamento: ")))#validar valor negativo /// falta validar cuando no es un numero
-        while ficha_temp[5][3] < 0:
-            ##### NO SE PONE input(print()), ES SOLO INPUT
-            ficha_temp[5][3] = int(input("Error, días fuera de rango, ingrese nuevamente: "))
+        x = str(input("Ingrese cantidad de días con el medicamento: "))#validar valor negativo /// falta validar cuando no es un numero
+        flag = True
+        while flag:
+            while not validar_numero(x):
+                x = str(input("Error, días fuera de rango, ingrese nuevamente: "))
+            x = int(x)
+            if x < 0:
+                x = "XD"
+            else:
+                flag = False
+                ficha_temp[5].append(int(x))
     else:
         ficha_temp[5].append(False)
     #datos extra del medico
@@ -203,7 +350,8 @@ def listar_Pacientes(fichas):
 #Programa principal
 fichas = {}
 opcion = 0
-opciones_posibles = "123456"
+#######falta quitar opcion 7
+opciones_posibles = "1234567"
 while opcion != 6:
     print("SERVICIO DE ATENCION MÉDICA DE URGENCIAS")
     print("-----------------------------------------")
@@ -258,4 +406,7 @@ while opcion != 6:
             print("No hay ningún rut registrado")
         else:
             listar_Pacientes(fichas)
+    elif opcion == 7:
+        rut = "11.111.111-k"
+        crear_FichaDemo(fichas,rut)
 
